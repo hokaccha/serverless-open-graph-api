@@ -1,0 +1,25 @@
+service:
+  name: serverless-open-graph-api
+
+provider:
+  name: aws
+  stage: prod
+  runtime: nodejs12.x
+  region: ap-northeast-1
+  memorySize: 256
+  deploymentBucket:
+    name: hokaccha
+  deploymentPrefix: serverless-deploy
+  apiGateway:
+    logs: true
+
+plugins:
+  - serverless-offline
+
+functions:
+  main:
+    handler: index.handler
+    events:
+      - http:
+          method: get
+          path: /
